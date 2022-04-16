@@ -5,6 +5,8 @@ from . import views
 
 urlpatterns=[
     re_path('^$',views.index,name='home'),
+    re_path('^hood$',views.hoods,name='estates'),
+    re_path('^my_estate/<int:id>$',views.estates,name='my_estate'),
 ]
 if settings.DEBUG:
     urlpatterns+= static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
