@@ -15,6 +15,13 @@ class Profile(models.Model):
     bio = models.TextField(max_length=250,blank=True)
     name = models.CharField(max_length=250,blank=True)
     profile_pic = models.ImageField(upload_to='images/')
-    neighbourhood = models.ForeignKey(Neighbourhood,null=True,blank=True)
+    neighbourhood = models.ForeignKey(Neighbourhood,null=True,blank=True,on_delete=models.CASCADE)
 
 
+class Business(models.Model):
+    business_name = models.CharField(max_length=200)
+    email = models.EmailField(max_length=200)
+    description = models.TextField(blank=True)
+    location = models.ForeignKey(Neighbourhood,on_delete=models.CASCADE)
+    business_photo = models.ImageField(upload_to='images/')
+    owner = models.ForeignKey(Profile,on_delete=models.CASCADE)
