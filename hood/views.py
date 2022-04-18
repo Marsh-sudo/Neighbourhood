@@ -2,8 +2,8 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from .models import Neighbourhood,Profile,Business
-from .forms import BusinessForm,UpdateUserForm,UpdateUserProfileForm
+from .models import Neighbourhood, Post,Profile,Business
+from .forms import BusinessForm,UpdateUserForm,UpdateUserProfileForm,NewPostForm
 
 # Create your views here.
 # @login_required(login_url='/accounts/register/')
@@ -17,11 +17,12 @@ def hoods(request):
 
 
 def estates(request,id):
-    post = Neighbourhood.objects.get(id=id)
-    # post = get_object_or_404(Neighbourhood,pk=id)
-    # houses = Neighbourhood.objects.filter(hoods=id)
+    houses = Neighbourhood.objects.get(id=id)
+    posts = Post.objects.filter(neighbourhood=id)
+    businesses = Business.objects.filter(pk=id)
+   
 
-    return render(request,'all-neighbor/details.html',{"post":post})
+    return render(request,'all-neighbor/details.html',{"houses":houses,"posts":posts,"businesses":businesses})
 
 def new_business(request,id):
     current_user = request.user
@@ -31,6 +32,9 @@ def new_business(request,id):
         if bus_form.is_valid():
             bus_form.save()
             return redirect('my_estate',id)
+    else:
+        bus_form = BusinessForm()
+    return render (request,'all-neighbor/business.html',{"bus_form":bus_form})
 
 
 def profile(request):
@@ -47,3 +51,31 @@ def profile(request):
         profile_form = UpdateUserProfileForm()
 
     return render (request,'all-neighbor/profile.html',{"profile_form":profile_form,"profiles":profile})
+
+
+def new_post(request,id):
+    current_user = request.user
+    if request.method == 'POST':
+        post_form = NewPostForm(request.POST)
+        post_form.instance.user = request.user
+        if post_form.is_valid():
+            post_form.save()
+            return redirect('my_estate',id)
+    else:
+        post_form = NewPostForm()
+    
+    return render (request,'all-neighbor/post.html',{"post_form":post_form})
+
+def leave_hood(request):
+    # hood = Neighbourhood.objects.get(id=id)
+    # request.user.profile.neighbourhood = None
+    # request.user.profile.save()
+    return redirect(request,'all-neighbor/estate.html')
+
+
+def search_hood(request):
+    if request.method == 'GET':
+        name = request.GET.get("name")
+        searched = Neighbourhood.objects.filter(name=name).all()
+
+    return render (request,'all-neighbor/search.html',{"hoods":searched})
