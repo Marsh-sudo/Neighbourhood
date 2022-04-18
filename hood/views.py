@@ -50,7 +50,7 @@ def profile(request):
     else:
         profile_form = UpdateUserProfileForm()
 
-    return render (request,'all-neighbor/profile.html',{"profile_form":profile_form,"profiles":profile})
+    return render (request,'all-neighbor/profile.html',{"profiles":profile})
 
 
 def new_post(request,id):
@@ -79,3 +79,16 @@ def search_hood(request):
         searched = Neighbourhood.objects.filter(name=name).all()
 
     return render (request,'all-neighbor/search.html',{"hoods":searched})
+
+def new_profile(request):
+    current_user = request.user
+    if request.method == 'POST':
+        user_form = UpdateUserForm(request.POST,instance=request.user)
+        profile_form = UpdateUserProfileForm(request.POST,request.FILES)
+        if profile_form.is_valid():
+            profile_form.save()
+            return redirect('profiles')
+    else:
+        profile_form = UpdateUserProfileForm()
+    
+    return render (request,'all-neighbor/new_profile.html',{"profile_form":profile_form})
