@@ -23,6 +23,13 @@ class Neighbourhood(models.Model):
         posts = cls.objects.all()
         return posts
 
+    def create_neighbourhood(self):
+        self.save()
+
+    def delete_neighbourhood(self):
+        self.delete()
+
+
 
 class Profile(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE)
@@ -30,6 +37,9 @@ class Profile(models.Model):
     name = models.CharField(max_length=250,blank=True)
     profile_pic = models.ImageField(upload_to='images/')
     neighbourhood = models.ForeignKey(Neighbourhood,null=True,blank=True,on_delete=models.CASCADE)
+    
+    def __str__(self):
+        return f'{self.user}'
 
     @classmethod
     def display_profile(cls):
@@ -44,4 +54,23 @@ class Business(models.Model):
     description = models.TextField(blank=True)
     location = models.ForeignKey(Neighbourhood,on_delete=models.CASCADE)
     business_photo = models.ImageField(upload_to='images/')
-    owner = models.ForeignKey(Profile,on_delete=models.CASCADE)
+    
+    def __str__(self):
+        return f'{self.business_name}'
+
+    def create_business(self):
+        self.save()
+
+    def delete_business(self):
+        self.delete()
+
+
+
+class Post(models.Model):
+    title = models.CharField(max_length=300,blank=True)
+    post = models.TextField()
+    author = models.ForeignKey(User,on_delete=models.CASCADE,blank=True)
+    neighbourhood = models.ForeignKey(Neighbourhood,null=True,blank=True,on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f'{self.title}'
