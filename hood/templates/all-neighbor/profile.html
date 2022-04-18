@@ -1,0 +1,34 @@
+{%extends 'all-neighbor/base.html'%}
+{%load bootstrap3%}
+{%load crispy_forms_tags%}
+{%block content%}
+
+<div class="container container-fluid">
+    {% for profile in profiles %}
+    <div class="row">
+        <div class="col-md-4">
+            <img src="{{profile.profile_pic.url}}" alt="" height="150px" width="150px" class="rounded-circle">
+        </div>
+        <div class="col-md-4">
+            <div class="navbar-collapse">
+                <h2>{{profile.name}}</h2>
+                <h2>{{profile.neighbourhood}}</h2>
+                <p>{{profile.bio}}</p>
+            </div>
+            <a class="btn btn-sm btn-outline-warning ml-3 mr-3" data-toggle="modal" data-target=".bd-example-modal-md"><strong>Edit Profile</strong></a>
+        </div>
+    {%endfor%}
+
+        <div class="modal fade bd-example-modal-md" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-md ">
+                <div class="modal-content">
+                    <form action="" method="post" enctype="multipart/form-data" class="mr-4 mt-4 ml-4 mb-4">
+                        {% csrf_token%}
+                        {{ profile_form|crispy}}
+                        <button type="submit" class="btn btn-color login text-white"> Update Profile</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+{%endblock%}
