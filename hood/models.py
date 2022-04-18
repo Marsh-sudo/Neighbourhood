@@ -31,6 +31,12 @@ class Profile(models.Model):
     profile_pic = models.ImageField(upload_to='images/')
     neighbourhood = models.ForeignKey(Neighbourhood,null=True,blank=True,on_delete=models.CASCADE)
 
+    @classmethod
+    def display_profile(cls):
+        profile = cls.objects.all()
+        return profile
+
+
 
 class Business(models.Model):
     business_name = models.CharField(max_length=200)
