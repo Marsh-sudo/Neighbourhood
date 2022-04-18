@@ -17,18 +17,9 @@
             </div>
             <a class="btn btn-sm btn-outline-warning ml-3 mr-3" data-toggle="modal" data-target=".bd-example-modal-md"><strong>Edit Profile</strong></a>
         </div>
+        <a href="{%url 'new_profile'%}" class="btn btn-outline-warning font-weight-bold btn-sm mb-2">EDIT PROFILE</a> 
     {%endfor%}
 
-        <div class="modal fade bd-example-modal-md" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-md ">
-                <div class="modal-content">
-                    <form action="" method="post" enctype="multipart/form-data" class="mr-4 mt-4 ml-4 mb-4">
-                        {% csrf_token%}
-                        {{ profile_form|crispy}}
-                        <a href="" class="btn btn-outline-warning font-weight-bold btn-sm mb-2">EDIT PROFILE</a> 
-                    </form>
-                </div>
-            </div>
-        </div>
+      
 
 {%endblock%}
