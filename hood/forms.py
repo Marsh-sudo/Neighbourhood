@@ -14,3 +14,25 @@ class UserRegisterForm(UserCreationForm):
         fields = ['username','email','password1','password2']
 
 User._meta.get_field('email')._unique = True 
+
+
+class BusinessForm(forms.ModelForm):
+    class Meta:
+        model = Business
+        fields = ['business_name','description','business_photo','email']
+        exclude = ['owner']
+
+
+class UpdateUserForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['username','email']
+
+class UpdateUserProfileForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['name','profile_pic','bio','neighbourhood']
+
+        widgets = {
+            'bio':Textarea(attrs={'cols':30,'rows':5}),
+        }
