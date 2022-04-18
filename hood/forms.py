@@ -20,7 +20,6 @@ class BusinessForm(forms.ModelForm):
     class Meta:
         model = Business
         fields = ['business_name','description','business_photo','email']
-        exclude = ['owner']
 
 
 class UpdateUserForm(forms.ModelForm):
