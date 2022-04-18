@@ -7,28 +7,28 @@
 
 <div class="container-fluid">
     
-    <h1 class="text-center">My Estate:{{post.location}}</h1>
+    <h1 class="text-center">My Estate:{{houses.location}}</h1>
     <div class="row">
       <div class="card mb-3" style="max-width: 100%;">
         <div class="row g-0">
           <div class="col-md-3">
-            <img src="{{post.logo.url}}" class="img-fluid rounded-start" alt="...">
+            <img src="{{houses.logo.url}}" class="img-fluid rounded-start" alt="...">
           </div>
           <div class="col-md-3">
             <div class="card-body">
-              <h5 class="card-title">{{post.location}}</h5>
-              <p class="card-text"><small class="text-muted">{{post.name}}</small></p>
+              <h5 class="card-title">{{houses.location}}</h5>
+              <p class="card-text"><small class="text-muted">{{houses.name}}</small></p>
             </div>
           </div>
           <div class="col-md-3">
             <div class="card-body">
-              <h5 class="card-title">Health Center:{{post.health_number}}</h5>
-              <h5 class="card-title">Police Center:{{post.police_number}}</h5>
+              <h5 class="card-title">Health Center:{{houses.health_number}}</h5>
+              <h5 class="card-title">Police Center:{{houses.police_number}}</h5>
             </div>
           </div>
           <div class="col-md-3">
             <div class="card-body">
-              <p class="card-text">{{post.description}}</p>
+              <p class="card-text">{{houses.description}}</p>
               <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
             </div>
           </div>
@@ -36,7 +36,40 @@
       </div>
     </div>
   
+</div>
 
+<div class="container">
+  <div class="row">
+    {%for post in posts%}
+    <div class="card">
+      <h5 class="card-header" style="text-align: center;">POST</h5>
+      <div class="card-body">
+        <h5 class="card-title">{{post.title|title}}</h5>
+        <p class="card-text">{{post.post}}</p>
+        <a href="#" class="btn btn-primary">ADD POST</a>
+      </div>
+    </div>    
+    {%endfor%}
+  </div>
+</div>
+
+<br><br><br>
+
+<div class="container">
+  <div class="row">
+    {%for business in businesses%}
+    <div class="card">
+      <div class="card-header">
+        BUSINESSES
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">{{business.business_name}}</h5>
+        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+      </div>
+    </div>
+    {%endfor%}
+  </div>
 </div>
 
 {%endblock%}
