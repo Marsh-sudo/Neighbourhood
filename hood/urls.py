@@ -6,10 +6,11 @@ from . import views
 urlpatterns=[
     re_path('^$',views.index,name='home'),
     re_path('^hood$',views.hoods,name='estates'),
+    re_path('^newhood$',views.new_hood,name="newhood"),
     path('my_estate/<int:id>',views.estates,name='my_estate'),
     path('new_business/<int:id>',views.new_business,name='new_business'),
     path('new_post/<int:id>',views.new_post,name='new_post'),
-    re_path('^newbusiness/<int:id>$',views.new_business,name='newbusiness'),
+    # re_path('^newbusiness/<int:id>$',views.new_business,name='newbusiness'),
     re_path('^profiles$',views.profile,name='profile'),
     re_path('^leave_hood$',views.leave_hood,name='leave_hood'),
     re_path('^search$',views.search_hood,name='search'),
