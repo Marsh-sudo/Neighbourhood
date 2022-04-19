@@ -52,7 +52,7 @@ class Business(models.Model):
     business_name = models.CharField(max_length=200)
     email = models.EmailField(max_length=200)
     description = models.TextField(blank=True)
-    location = models.ForeignKey(Neighbourhood,on_delete=models.CASCADE)
+    location = models.ForeignKey(Neighbourhood,null=True,default='',on_delete=models.CASCADE)
     business_photo = models.ImageField(upload_to='images/')
     
     def __str__(self):
