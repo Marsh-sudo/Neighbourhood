@@ -11,10 +11,10 @@ urlpatterns=[
     path('new_business/<int:id>',views.new_business,name='new_business'),
     path('new_post/<int:id>',views.new_post,name='new_post'),
     # re_path('^newbusiness/<int:id>$',views.new_business,name='newbusiness'),
-    re_path('^profiles$',views.profile,name='profile'),
+    path('profiles',views.profile,name='profile'),
     re_path('^leave_hood$',views.leave_hood,name='leave_hood'),
     re_path('^search$',views.search_hood,name='search'),
-    re_path('^new_profile$',views.new_profile,name='new_profile'),
+    # re_path('^new_profile$',views.new_profile,name='new_profile'),
 ]
 if settings.DEBUG:
     urlpatterns+= static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
