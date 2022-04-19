@@ -1,5 +1,6 @@
 from dataclasses import field, fields
 import email
+from pyexpat import model
 from django import forms
 from django.contrib.auth.models import User
 from django.forms.widgets import Textarea
@@ -20,7 +21,13 @@ class BusinessForm(forms.ModelForm):
     class Meta:
         model = Business
         fields = ['business_name','description','business_photo','email']
+        exclude = ('location',)
 
+class NewHoodForm(forms.ModelForm):
+    class Meta:
+        model = Neighbourhood
+        fields = ['name','location','description','logo','health_number','police_number']
+        exclude = ['admin']
 
 class UpdateUserForm(forms.ModelForm):
     class Meta:
