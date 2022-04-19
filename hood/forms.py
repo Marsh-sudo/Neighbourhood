@@ -20,8 +20,8 @@ User._meta.get_field('email')._unique = True
 class BusinessForm(forms.ModelForm):
     class Meta:
         model = Business
-        fields = ['business_name','description','business_photo','email']
-        exclude = ('location',)
+        fields ='__all__'
+        
 
 class NewHoodForm(forms.ModelForm):
     class Meta:
@@ -46,4 +46,4 @@ class UpdateUserProfileForm(forms.ModelForm):
 class NewPostForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ['title','post','author']
+        fields ='__all__'
