@@ -70,7 +70,11 @@ class Post(models.Model):
     title = models.CharField(max_length=300,blank=True)
     post = models.TextField()
     author = models.ForeignKey(User,on_delete=models.CASCADE,blank=True)
-    neighbourhood = models.ForeignKey(Neighbourhood,null=True,blank=True,on_delete=models.CASCADE)
+    neighbourhood = models.ForeignKey(Neighbourhood,null=True,blank=True,on_delete=models.CASCADE,related_name='hood')
 
     def __str__(self):
         return f'{self.title}'
+
+    def display_post(cls):
+        posts= cls.objects.all()
+        return posts
