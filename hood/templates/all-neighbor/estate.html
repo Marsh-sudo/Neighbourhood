@@ -2,7 +2,8 @@
 {%load bootstrap3%}
 {%load static%}
 {%block content%}
-
+<br><br>
+<a href="{%url 'newhood' %}" class="btn btn-success" style="margin-left: 150px;">ADD HOOD</a>
 {% for hood in hoods %}
 <div class="container">
     <div class="row">
@@ -15,7 +16,7 @@
                 <div class="card-body">
                   <h5 class="card-title">{{hood.location}}</h5>
                   <p class="card-text">{{hood.description}}</p>
-                  <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                  <p class="card-text"><small class="text-muted"></small></p>
                   <a href="/my_estate/{{hood.id}}" class="btn btn-outline-warning font-weight-bold btn-sm mb-2">JOIN HOOD</a> 
                 </div>
               </div>
