@@ -7,7 +7,7 @@ from .models import Neighbourhood, Post,Profile,Business
 from .forms import BusinessForm,UpdateUserForm,UpdateUserProfileForm,NewPostForm,NewHoodForm
 
 # Create your views here.
-# @login_required(login_url='/accounts/register/')
+@login_required(login_url='/accounts/register/')
 def index(request):
     return render(request,'all-neighbor/home.html')
 
